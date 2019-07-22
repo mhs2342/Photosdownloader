@@ -11,8 +11,7 @@ import UIKit
 
 class CollectionViewController: UICollectionViewController {
     
-    private var dataSource = DataSource()
-    private var photos = [UIImage]()
+    private var datasource = Datasource()
     
     // MARK: Properties
     private let itemsPerRow: CGFloat = 3
@@ -31,22 +30,29 @@ class CollectionViewController: UICollectionViewController {
     
     func configure() {
         collectionView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(refreshView), for: .valueChanged)
-        
+        refreshControl.addTarget(self, action: #selector(loadImages), for: .valueChanged)
+        loadImages()
     }
     
-    @objc func refreshView() {
-        dataSource?.getPhotos(completionHandler: { result in
-            switch result {
-            case .success(let data):
-                photos = data.map { UIImage(data: $0 )}.compactMap { $0 }
-            case .failure(let error):
-                print(error.localizedDescription)
+    @objc func loadImages() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.datasource.getPhotosIndividually { (result) in
+                DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
+                }
+                switch result {
+                case .success(let index):
+                    self.collectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
+                case .failure(let err):
+                    print(err)
+                    //                self.datasource.imageURLs.remove(at: err.indexToRemove)
+                    //                self.collectionView.deleteItems(at: [IndexPath(row: err.indexToRemove, section: 0)])
+                }
             }
-            refreshControl.endRefreshing()
-            collectionView.reloadData()
-        })
+        }
+
     }
+    
 }
 
 extension CollectionViewController {
@@ -55,12 +61,17 @@ extension CollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return datasource.imageData.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        cell.backgroundColor = .black
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCollectionViewCell
+        if let imageData = datasource.imageData[indexPath.row],
+            let image = UIImage(data: imageData) {
+            cell.setImage(image)
+        } else {
+            cell.backgroundColor = .red
+        }
         return cell
     }
 }
