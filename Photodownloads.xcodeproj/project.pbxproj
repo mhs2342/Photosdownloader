@@ -14,6 +14,7 @@
 		A319AA5622E6330400D41630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A319AA5522E6330400D41630 /* Assets.xcassets */; };
 		A319AA5922E6330400D41630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A319AA5722E6330400D41630 /* LaunchScreen.storyboard */; };
 		A319AA6122E634E000D41630 /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319AA6022E634E000D41630 /* Datasource.swift */; };
+		C9F9929E22F9D4D0000F1126 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F9929D22F9D4D0000F1126 /* PhotoDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		A319AA5822E6330400D41630 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A319AA5A22E6330400D41630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A319AA6022E634E000D41630 /* Datasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
+		C9F9929D22F9D4D0000F1126 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				9F4D65E422E6364B00EE8A9F /* CollectionViewController.swift */,
 				9F4D65E822E63FC500EE8A9F /* PhotoCollectionViewCell.swift */,
 				A319AA6022E634E000D41630 /* Datasource.swift */,
+				C9F9929D22F9D4D0000F1126 /* PhotoDetailViewController.swift */,
 			);
 			path = Photodownloads;
 			sourceTree = "<group>";
@@ -144,7 +147,7 @@
 				9F4D65E522E6364B00EE8A9F /* CollectionViewController.swift in Sources */,
 				9F4D65E922E63FC500EE8A9F /* PhotoCollectionViewCell.swift in Sources */,
 				A319AA6122E634E000D41630 /* Datasource.swift in Sources */,
-				A319AA5122E6330200D41630 /* ViewController.swift in Sources */,
+				C9F9929E22F9D4D0000F1126 /* PhotoDetailViewController.swift in Sources */,
 				A319AA4F22E6330200D41630 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

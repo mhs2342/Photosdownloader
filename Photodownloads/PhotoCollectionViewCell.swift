@@ -14,4 +14,8 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     func setImage(_ image: UIImage) {
         self.imageView.image = image
     }
+    
+    override func prepareForReuse() {
+        self.imageView.image = nil
+    }
 }
